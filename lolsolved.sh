@@ -26,7 +26,15 @@ do
    binwalk -e $file >/dev/null; grep -r $FLAG _$file.extracted/ && echo 'GETREKT: binwalk -e ; grep -r flag' && exit 0
 
    # Do crypto solves
+   # FeatherDuster autopwn
+   python $featherduster $file <<EOF | grep $FLAG && echo 'GETREKT: featherduster autodecode' && exit 0
+analyze
+samples
+EOF
+
+   # FeatherDuster autodecode
    echo 'autopwn' | python $featherduster $file | grep $FLAG && echo 'GETREKT: featherduster autopwn' && exit 0
+   
 
    # Do reversing solves
    #TODO Do RE solves
