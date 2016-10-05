@@ -29,7 +29,7 @@ do
    echo 'autopwn' | python $featherduster $file | grep $FLAG && echo 'GETREKT: featherduster autopwn' && exit 0
 
    # Do reversing solves
-   #TODO Do RE solves
+   rabin2 -zz "${file}" | grep -i "${FLAG}" && exit 0
 
    # Do stego solves
    #TODO Do stego solves
