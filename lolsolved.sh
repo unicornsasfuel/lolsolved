@@ -1,9 +1,9 @@
-# Usage: getrekt.sh file_or_folder flag_marker
+# Usage: getrekt.sh file flag_marker
 # Example: getrekt.sh for101 'flag{'
 
 if [ -z "$2" ]
    then
-   echo 'Usage: lolsolved.sh file_or_folder flag_marker'
+   echo 'Usage: lolsolved.sh file flag_marker'
    exit 2
 fi
 
@@ -21,8 +21,8 @@ find "$1" | while read file; do
    strings "$file" | grep "$FLAG" && echo 'GETREKT: strings | grep flag' && exit 0
    strings "$file" | grep "$FLAG_REVERSE" && echo 'GETREKT: strings | grep flag_in_reverse' && exit 0
    binwalk -e "$file" >/dev/null;
-   grep -r -i "$FLAG" _$file.extracted/ && echo 'GETREKT: binwalk -e -M ; grep -r flag' && exit 0
-   grep -r -i "$FLAG_REVERSE" _$file.extracted/ && echo 'GETREKT: binwalk -e -M ; grep -r flag_in_reverse' && exit 0
+   grep -r -i "$FLAG" *.extracted/ && echo 'GETREKT: binwalk -e -M ; grep -r flag' && exit 0
+   grep -r -i "$FLAG_REVERSE" *.extracted/ && echo 'GETREKT: binwalk -e -M ; grep -r flag_in_reverse' && exit 0
 
    # Do crypto solves
    # FeatherDuster autopwn
