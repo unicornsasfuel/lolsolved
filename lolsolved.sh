@@ -23,7 +23,7 @@ echo ''
 find "$files" | while read file; do
    strings "$file" | grep -e "$FLAG" && echo 'GETREKT: strings | grep flag' && exit 0
    strings "$file" | grep -e "$FLAG_REVERSE" && echo 'GETREKT: strings | grep flag_in_reverse' && exit 0
-   binwalk -e "$file" >/dev/null;
+   binwalk -e -M "$file" >/dev/null;
    grep -r -i -e "$FLAG" *.extracted/ && echo 'GETREKT: binwalk -e -M ; grep -r flag' && exit 0
    grep -r -i -e "$FLAG_REVERSE" *.extracted/ && echo 'GETREKT: binwalk -e -M ; grep -r flag_in_reverse' && exit 0
 
