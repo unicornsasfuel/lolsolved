@@ -42,6 +42,8 @@ EOF
    rabin2 -zz "$file" | grep -i -e "$FLAG" && exit 0
 
    # Do stego solves
-   #TODO Do stego solves
+   python solvers/imagestegosolve.py "$file" | grep -e "$FLAG" && exit 0
 
 done
+
+echo 'Rats. Couldn\'t solve it. Check the extracted files just in case a flag fell out...'
