@@ -46,4 +46,4 @@ EOF
 
 done
 
-echo 'Rats. Couldn\'t solve it. Check the extracted files just in case a flag fell out...'
+echo "Rats. Couldn't solve it. Check the extracted files just in case a flag fell out..."
