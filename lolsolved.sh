@@ -7,7 +7,7 @@ if [ -z $2 ]
    exit 2
 fi
 
-featherduster='/tools/featherduster/featherduster.py'
+featherduster='~/tools/featherduster/featherduster.py'
 
 FLAG="$2"
 FLAG_REVERSE=`echo $FLAG | rev`
@@ -23,7 +23,9 @@ do
    
    strings $file | grep $FLAG && echo 'GETREKT: strings | grep flag' && exit 0
    strings $file | grep $FLAG_REVERSE && echo 'GETREKT: strings | grep flag_in_reverse' && exit 0
-   binwalk -e $file >/dev/null; grep -r $FLAG _$file.extracted/ && echo 'GETREKT: binwalk -e ; grep -r flag' && exit 0
+   binwalk -e -M $file >/dev/null
+   grep -r -i $FLAG _$file.extracted/ && echo 'GETREKT: binwalk -e -M ; grep -r flag' && exit 0
+   grep -r -i $FLAG_REVERSE _$file.extracted/ && echo 'GETREKT: binwalk -e -M ; grep -r flag_in_reverse' && exit 0
 
    # Do crypto solves
    # FeatherDuster autopwn
@@ -37,7 +39,7 @@ EOF
    
 
    # Do reversing solves
-   #TODO Do RE solves
+   rabin2 -zz "${file}" | grep -i "${FLAG}" && exit 0
 
    # Do stego solves
    #TODO Do stego solves
